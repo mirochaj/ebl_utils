@@ -27,7 +27,12 @@ archivePrefix = {arXiv},
 """
 experiment = 'ciber'
 
-_data = \
+notes = \
+"""
+Notes:
+"""
+
+data = \
 {
  'waves': [1.1, 1.6],
  'scales': [163.109675, 226.175189, 313.624659, 434.886015, 603.032449,
@@ -42,7 +47,7 @@ _data = \
     4.529842, 3.466993, 2.194328, 3.200047, 4.421351, 5.271408, 10.716054,
     15.914549, 24.198570, 43.214995, 73.659107, 130.415398, 238.176960,
     514.693350, 1044.747370]],
- 'bounds': [[(164.414836, 21.476076),(91.617503, 11.291547),
+ 'err': [[(164.414836, 21.476076),(91.617503, 11.291547),
          (133.566424, 29.113963),(22.816076, 6.197335),
          (12.435307, 6.227228),(6.618910, 3.562695),(1.766532, 0.975299),
          (1.585845, 0.947782),(1.728775, 1.090538),(1.437632, 0.989301),
@@ -57,22 +62,32 @@ _data = \
           (0.457333, 0.457333),(0.656497, 0.656497),(0.759805, 0.759805),
           (0.918096, 0.918096),(1.348869, 1.348869),(2.141193, 2.141193),
           (4.204249, 4.204249),(11.496256, 11.496256),(55.075427, 55.075427),
-          (434.553817, 434.553817)]]
+          (434.553817, 434.553817)]],
+
 }
+
+# Masking depth quoted in Vega mags, these conversions are for J and H
+# as tabulated here: https://www.gemini.edu/observing/resources/magnitudes-and-fluxes
+# Note that these mag conversions can vary slightly.
+# Also note that 3.6 micron has a correction of 2.93, but 2.779 in Timlin+2016
+# Also seeing 2.669 for WISE W1 (https://wise2.ipac.caltech.edu/docs/release/allsky/expsup/sec4_4h.html)
+masking_depth = [17.5 + 0.94, 17. + 1.38]
+masking_waves = [1.2, 1.6]
+# Masking depth for Spitzer 3.6 micron is 16.
+# All use 2MASS catalogs
 
 # Dataset 'err' is actually upper and lower bounds.
 # Convert to error bar to be consistent with other datasets
-data = _data.copy()
-data['err'] = []
-for i, wave in enumerate(data['waves']):
-    data['err'].append([])
-    for j, scale in enumerate(data['scales']):
-        err = _data['bounds'][i][j][0] - _data['mean'][i][j], \
-              _data['mean'][i][j] - _data['bounds'][i][j][1]
-        data['err'][i].append(err)
+#data['err'] = []
+#for i, wave in enumerate(data['waves']):
+#    data['err'].append([])
+#    for j, scale in enumerate(data['scales']):
+#        err = data['bounds'][i][j][0] - data['mean'][i][j], \
+#              abs(data['mean'][i][j] - data['bounds'][i][j][1])
+#        data['err'][i].append(err)
 
 scale_units = 'ell'
-power_units = r'$\ell^2 C_{\ell} / 2 / \pi$ nW / m^2 / sr'
+power_units = 'nW^2/m^4/sr' # I think these might be squared actually
 
 def get_ebl_anisotropies():
     return data['waves'], data['scales'], data['mean'], data['err']

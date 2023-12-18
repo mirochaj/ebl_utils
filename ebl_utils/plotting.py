@@ -129,14 +129,15 @@ def plot_spectrum(ax=None, fig=1, fig_kwargs={}, include_models=[],
     ax.set_xlim(0.3, 6)
     ax.set_ylim(1, 150)
 
-    fig.subplots_adjust(left=0.15, bottom=0.15)
+    fig.subplots_adjust(left=0.2, bottom=0.2)
 
     ##
     # Done
     return fig, ax
 
 def plot_anisotropy_color(fig=None, ax=None, fig_kwargs={}, ell_bin=(500, 1e3),
-    include_datasets=['ciber', 'akari'], ell_avg=True,
+    include_datasets=['ciber', 'akari', 'hubble', 'spitzer'],
+    binning_method='closest',
     label_experiments=True, label_papers=False, **kwargs):
     """
     Make a nice-ish plot of the "anistropy color," i.e., the amplitude of
@@ -196,12 +197,27 @@ def plot_anisotropy_color(fig=None, ax=None, fig_kwargs={}, ell_bin=(500, 1e3),
 
             ok = np.logical_and(x >= ell_bin[0], x < ell_bin[1])
 
+            if dset.power_units.startswith('nw^2'):
+                ps = np.sqrt(ps)
+                # Need to fix errors too
+            else:
+                pass
+
             err = np.array(err)
 
             for i, wave in enumerate(waves):
 
-                if ell_avg:
+                print('hi', i, dset.name, ok.sum(), np.array(ps)[i,ok==1])
+
+                if binning_method in ['avg', 'mean']:
                     ax.errorbar(wave, np.array(ps)[i,ok==1].mean(),
+                        yerr=err[i,ok==1].mean(), fmt='o',
+                        label=data.name, **kwargs)
+
+                    continue
+                elif binning_method.startswith('close'):
+                    y = np.array(ps)[i,ok==1]
+                    ax.errorbar(wave, y[np.argmin(np.abs(x[ok==1] - np.mean(ell_bin)))],
                         yerr=err[i,ok==1].mean(), fmt='o',
                         label=data.name, **kwargs)
 
@@ -232,7 +248,7 @@ def plot_anisotropy_color(fig=None, ax=None, fig_kwargs={}, ell_bin=(500, 1e3),
     ax.set_xlim(0.3, 6)
     ax.set_ylim(1e-2, 10)
 
-    fig.subplots_adjust(left=0.15, bottom=0.15)
+    fig.subplots_adjust(left=0.2, bottom=0.2)
 
     return fig, ax
 

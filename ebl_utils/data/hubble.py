@@ -1,5 +1,5 @@
-from . import bernstein2007
+from . import bernstein2007, mitchellwynne2015
 
-all_datasets = bernstein2007,
+all_datasets = bernstein2007, mitchellwynne2015
 
 name = 'HST'

@@ -1,7 +1,7 @@
 """
 Matsuomoto et al. 2011, ApJ, 742, 124
 """
-name = 'Matsuomoto et al. (2011)'
+name = 'Matsumoto et al. (2011)'
 year = 2011
 experiment = 'akari'
 
@@ -9,10 +9,14 @@ link = 'https://ui.adsabs.harvard.edu/abs/2011ApJ...742..124M/abstract'
 bibtex = \
 """
 @ARTICLE{2011ApJ...742..124M,
-       author = {{Matsumoto}, T. and {Seo}, H.~J. and {Jeong}, W. -S. and {Lee}, H.~M. and {Matsuura}, S. and {Matsuhara}, H. and {Oyabu}, S. and {Pyo}, J. and {Wada}, T.},
-        title = "{AKARI Observation of the Fluctuation of the Near-infrared Background}",
+       author = {{Matsumoto}, T. and {Seo}, H.~J. and {Jeong}, W. -S.
+       and {Lee}, H.~M. and {Matsuura}, S. and {Matsuhara}, H.
+       and {Oyabu}, S. and {Pyo}, J. and {Wada}, T.},
+        title = "{AKARI Observation of the Fluctuation of the Near-infrared
+        Background}",
       journal = {\apj},
-     keywords = {cosmology: observations, diffuse radiation, early universe, Astrophysics - Cosmology and Nongalactic Astrophysics},
+     keywords = {cosmology: observations, diffuse radiation, early universe,
+     Astrophysics - Cosmology and Nongalactic Astrophysics},
          year = 2011,
         month = dec,
        volume = {742},
@@ -32,7 +36,8 @@ archivePrefix = {arXiv},
 Notes:
 - From Table 2.
 - Only including "sky fluctuation" column.
-- Units are all nW m^-2 sr^-1
+- Native units are all nW m^-2 sr^-1, we've squared everything for consistency
+with other datasets.
 - Angular scales are arcseconds.
 
 """
@@ -47,10 +52,19 @@ data = \
  'err':  [[0.082, 0.043, 0.035, 0.050, 0.023, 0.045, 0.12],
           [0.035, 0.041, 0.017, 0.034, 0.016, 0.029, 0.046],
           [0.02, 0.011, 0.0075, 0.019, 0.007, 0.010, 0.012]],
- 'maglim': [22.9, 23.2, 23.8],
 }
 
+# Square everything
+for i, wave in enumerate(data['waves']):
+    for j, mode in enumerate(data['scales']):
+        data['mean'][i][j] = data['mean'][i][j]**2
+        data['err'][i][j] = data['err'][i][j]**2
+
+masking_depth = [22.9, 23.2, 23.8]
+masking_waves = data['waves']
+
 scale_units = 'arcsec'
+power_units = 'nW^2/m^4/sr^-2'
 
 def get_ebl_anisotropies():
     return data['waves'], data['scales'], data['mean'], data['err']
