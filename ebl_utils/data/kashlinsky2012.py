@@ -30,10 +30,11 @@ notes = \
 Notes:
 - All data points extracted using plotdigitizer.com/app and so may not be
 identical to the actual measurements in the paper. They should be pretty close,
-however. This also explains the insane number of "significant" figures.
+however. This also explains the insane number of "significant" figures (I've
+just copy-pasted what plotdigitizer gives you).
 - On small scales the error bars are imperceptibly small on the plots, so have
 been assigned an error of zero. This will obviously cause problems if you
-try to use this data in a fit!
+try to use this data in a fit! Beware.
 """
 
 _data = \
@@ -82,6 +83,7 @@ _data = \
  'shot': [4.8e-11, 2.2e-11],
 }
 
+# Lower and upper edges of errorbars.
 lo_36 = [0] * 20 + [0.01681646033922299,0.015287651723875173,
     0.012972256091332204,0.012010544759618665,0.01000558629196886,
     0.00979467476851445,0.008519036762210889,0.0074101482547616485,
@@ -99,10 +101,27 @@ hi_36 = [0] * 20 + [0.017675987761983005,
     0.002465027953346225,0.004503140622834648,0.006549350025179397,
     0.006247652861059601,0.02412916967950248]
 
+lo_45 = [0] * 21 + [0.006880082045343966, 0.006486736057694129,
+    0.005489780232647974,0.004481138913744279,0.004273461707230448,
+    0.0035840441791993105,0.0029605358428619988,0.002926158115325439,
+    0.002547741028451846,0.002174661868900773,0.002122004216449595,
+    0.003378253460193281,0.0014753881043699235,0.0014666817580510625,
+    0.001808613594857272,0.0008312620559227746,0.0014771665127860938,
+    0.001014800036468567,0.0003793469178097528,0.0006224216602367518]
+
+hi_45 = [0] * 21 + [0.00763069364542622, 0.006971128065234671,
+    0.005918604871770445, 0.004914631898433929, 0.004786343540595095,
+    0.003995725886161544, 0.003385515828274934, 0.003348657804930673,
+    0.0029673664499178893,0.0025971877889504427,0.002588496355493997,
+    0.004336822668471388, 0.0017960584587342523,0.0019571549076403644,
+    0.0023841583675178416,0.0013183278574049326,0.002078989271735489,
+    0.002041331884520336,0.0008968990149170687,0.0036532208883852573]
+
+
 
 _data['bounds'] = []
 _data['bounds'].append([(hi_36[i], lo_36[i]) for i in range(len(_data['scales']))])
-_data['bounds'].append([(0, 0) for i in range(len(_data['scales']))])
+_data['bounds'].append([(hi_45[i], lo_45[i]) for i in range(len(_data['scales']))])
 
 masking_depth = [25, 25]
 masking_waves = _data['waves']
@@ -110,9 +129,9 @@ masking_waves = _data['waves']
 #
 data = _data.copy()
 
-
 # Native dataset is q^2 P(q) / 2pi vs. 2pi/q [arcsec]
-q = _data['scales']
+from math import pi
+#q = 2 * pi / _data['scales']
 
 # Placeholder
 data['err'] = []
