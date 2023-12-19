@@ -24,3 +24,12 @@ archivePrefix = {arXiv},
       adsnote = {Provided by the SAO/NASA Astrophysics Data System}
 }
 """
+
+data = \
+{
+ 'waves': [1.25, 1.4, 1.6],
+ 'uplims': [22, 32, 25],
+}
+
+def get_ebl_spectrum():
+    return data['waves'], data['uplims'], None
