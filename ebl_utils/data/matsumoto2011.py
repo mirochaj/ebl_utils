@@ -1,6 +1,8 @@
 """
 Matsuomoto et al. 2011, ApJ, 742, 124
 """
+from math import pi
+
 name = 'Matsumoto et al. (2011)'
 year = 2011
 experiment = 'akari'
@@ -52,6 +54,10 @@ data = \
  'err':  [[0.082, 0.043, 0.035, 0.050, 0.023, 0.045, 0.12],
           [0.035, 0.041, 0.017, 0.034, 0.016, 0.029, 0.046],
           [0.02, 0.011, 0.0075, 0.019, 0.007, 0.010, 0.012]],
+ # Shot is really sqrt(q**2 P(q)/2pi)
+ 'shot': [[0.13, 0.12, 0.10, 0.087, 0.070, 0.058, 0.041],
+          [0.08, 0.075, 0.064, 0.055, 0.044, 0.036, 0.027],
+          [0.045, 0.039, 0.034, 0.030, 0.025, 0.020, 0.016]],
 }
 
 # Square everything
@@ -59,6 +65,9 @@ for i, wave in enumerate(data['waves']):
     for j, mode in enumerate(data['scales']):
         data['mean'][i][j] = data['mean'][i][j]**2
         data['err'][i][j] = data['err'][i][j]**2
+        # `mode` is in arcsec = 2 pi / q
+        q = 2 * pi / float(mode * pi / 3600 / 180.)
+        data['shot'][i][j] = data['shot'][i][j]**2 * 2 * pi / q**2
 
 masking_depth = [22.9, 23.2, 23.8]
 masking_waves = data['waves']

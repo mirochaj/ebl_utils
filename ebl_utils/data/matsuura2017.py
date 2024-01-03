@@ -4,11 +4,8 @@ Matsuura et al. 2017.
 
 name = 'Matsuura et al. (2017)'
 year = 2017
-
 experiment = 'CIBER'
-
 link = 'https://ui.adsabs.harvard.edu/abs/2017ApJ...839....7M/abstract'
-
 bibtex = \
 """
 @ARTICLE{2017ApJ...839....7M,
@@ -45,7 +42,6 @@ fields = ['ELAIS-N1', 'NEP', 'Bootes-A', 'Bootes-B']
 notes = \
 """
 Notes:
-- Assumes Kelsall model.
 - Included systematic errors are ordered as +/-
 - Units are all nW m^-2 sr^-1
 """
@@ -82,8 +78,6 @@ def get_ebl_spectrum(use_nominal=False, use_final=True):
 
     If use_final==True, returns only the single data point quoted in the text
     and abstract.
-
-
     """
     data = data_nominal if use_nominal else data_minimum
 
