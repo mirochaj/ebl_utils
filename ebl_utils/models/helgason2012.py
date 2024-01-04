@@ -1,4 +1,37 @@
+"""
+Helgason et al. (2012)
+"""
+name = 'Helgason et al. (2012)'
+year = 2012
+link = 'https://ui.adsabs.harvard.edu/abs/2012ApJ...752..113H/abstract'
+bibtex = \
+"""
+@ARTICLE{2012ApJ...752..113H,
+       author = {{Helgason}, Kari and {Ricotti}, Massimo and {Kashlinsky}, Alexander},
+        title = "{Reconstructing the Near-infrared Background Fluctuations from Known Galaxy Populations Using Multiband Measurements of Luminosity Functions}",
+      journal = {\apj},
+     keywords = {galaxies: luminosity function, mass function, infrared: diffuse background, infrared: galaxies, large-scale structure of universe, Astrophysics - Cosmology and Nongalactic Astrophysics},
+         year = 2012,
+        month = jun,
+       volume = {752},
+       number = {2},
+          eid = {113},
+        pages = {113},
+          doi = {10.1088/0004-637X/752/2/113},
+archivePrefix = {arXiv},
+       eprint = {1201.4398},
+ primaryClass = {astro-ph.CO},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2012ApJ...752..113H},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+"""
+notes = \
+"""
+Notes:
+- 
+"""
 
+model_type = 'empirical'
 
 # Table 2
 lf_cols = ['l_eff', 'N', 'zmax', 'Mstar', 'q', 'pstar', 'p', 'alpha', 'r']
@@ -26,7 +59,7 @@ waves = [lf_fits[key][0] for key in lf_fits.keys()]
 
 data_ebl = \
 {
- 
+
 }
 mean_ebl = {}
 mean_ebl['B'] = (3.33, 1.72, -0.82), (2.26, 1.56, -0.71), (1.17, 1.24, -0.50),\
@@ -142,7 +175,22 @@ data_shot['bounds'].append([(hi_36[i], lo_36[i]) for i in range(len(masking_dept
 data_shot['bounds'].append([(hi_45[i], lo_45[i]) for i in range(len(masking_depth))])
 
 def get_ebl_spectrum():
-    raise NotImplemented('help')
+    """
+    Plot the mean EBL [nW/m^2/sr] as a function of observed wavelength [microns].
+    """
+    _waves = []
+    _mean = []
+    _err = []
+    for i, band in enumerate(bands):
+        if band not in mean_ebl:
+            continue
+
+
+        _waves.append(waves[i])
+        _mean.append(mean_ebl[band][-1][0])
+        _err.append((mean_ebl[band][-1][2], -mean_ebl[band][-1][1]))
+
+    return _waves, _mean, _err
 
 def get_ebl_shot_power(use_bounds=True):
     if use_bounds:

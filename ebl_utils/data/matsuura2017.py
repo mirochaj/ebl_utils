@@ -44,6 +44,7 @@ notes = \
 Notes:
 - Included systematic errors are ordered as +/-
 - Units are all nW m^-2 sr^-1
+- Results recorded are from Table 3.
 """
 
 zodi = 'kelsall'
@@ -72,12 +73,11 @@ data_minimum = \
 
 final = (1.4, 42.7, (11.9, 10.6))
 
-def get_ebl_spectrum(use_nominal=False, use_final=True):
+def get_ebl_spectrum(use_nominal=True):
     """
     Retrieve measured EBL spectrum.
 
-    If use_final==True, returns only the single data point quoted in the text
-    and abstract.
+    If use_nominal==False, returns instead the minimal EBL limits.
     """
     data = data_nominal if use_nominal else data_minimum
 

@@ -41,6 +41,7 @@ data = \
  'mean': [21.98],
  'err': [1.23],
  'sys': [1.36],
+ 'band': [0.360, 0.910]
 }
 
 def get_ebl_spectrum():
