@@ -30,6 +30,9 @@ experiment = 'ciber'
 notes = \
 """
 Notes:
+- On masking: "The extended 2MASS catalog is 75% complete at J=17.5,
+which translates to 17.5 and 17.0 in CIBER’s 1.1μm and 1.6μm bands,
+respectively,and all fields are masked to this depth."
 """
 
 data = \
@@ -72,7 +75,7 @@ data = \
 # Also note that 3.6 micron has a correction of 2.93, but 2.779 in Timlin+2016
 # Also seeing 2.669 for WISE W1 (https://wise2.ipac.caltech.edu/docs/release/allsky/expsup/sec4_4h.html)
 masking_depth = [17.5 + 0.94, 17. + 1.38]
-masking_waves = [1.2, 1.6]
+masking_waves = [1.1, 1.6]
 # Masking depth for Spitzer 3.6 micron is 16.
 # All use 2MASS catalogs
 
