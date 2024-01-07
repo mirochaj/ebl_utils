@@ -60,6 +60,11 @@ data = \
           [0.045, 0.039, 0.034, 0.030, 0.025, 0.020, 0.016]],
 }
 
+# Native dataset is q^2 P(q) / 2pi vs. 2pi/q [arcsec]
+# Convert to ell for consistency with other datasets
+data['scales'] = [180. / (element / 3600.) \
+    for element in data['scales']]
+
 # Square everything
 for i, wave in enumerate(data['waves']):
     for j, mode in enumerate(data['scales']):
@@ -72,7 +77,7 @@ for i, wave in enumerate(data['waves']):
 masking_depth = [22.9, 23.2, 23.8]
 masking_waves = data['waves']
 
-scale_units = 'arcsec'
+scale_units = 'ell'
 power_units = 'nW^2/m^4/sr^-2'
 
 def get_ebl_anisotropies():

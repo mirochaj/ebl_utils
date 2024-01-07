@@ -25,7 +25,7 @@ archivePrefix = {arXiv},
       adsnote = {Provided by the SAO/NASA Astrophysics Data System}
 }
 """
-experiment = 'ciber'
+experiment = 'ciber', 'spitzer'
 
 notes = \
 """
@@ -33,9 +33,11 @@ Notes:
 - On masking: "The extended 2MASS catalog is 75% complete at J=17.5,
 which translates to 17.5 and 17.0 in CIBER’s 1.1μm and 1.6μm bands,
 respectively,and all fields are masked to this depth."
+- The 3.6 micron measurements here are from Spitzer, the same as presented in
+Cooray+ 2012, but with a shallower masking threshold closer to CIBER.
 """
 
-data = \
+_data = \
 {
  'waves': [1.1, 1.6],
  'scales': [163.109675, 226.175189, 313.624659, 434.886015, 603.032449,
@@ -69,6 +71,22 @@ data = \
 
 }
 
+data_spitzer = \
+{
+ 'waves': [3.6],
+ 'scales': [87.8503,122.466,170.722,237.993,331.771,462.500,644.741,898.792,
+    1252.95,1746.65,2434.90,3394.33,4731.82,6596.32,9195.50,12818.9,17869.9,
+    24911.3,34727.3,48411.0,67486.7,94078.8,131149.],
+ 'mean': [[0.134564,0.0217140,0.0198840,0.0265480,0.00305800,0.00274400,
+    0.0120330,0.00434800,0.00453400,0.00673100,0.00781400,0.0132960,0.0139450,
+    0.0193150,0.0273810,0.0452320,0.0753600,0.131023,0.231956,0.398387,0.655572,
+    1.10979,2.41824]],
+ 'err': [[0.293058,0.0339500,0.0294390,0.0263380,0.00379100,0.00968800,0.00451800,
+  0.00144900,0.00111600,0.00122900,0.00122000,0.00134000,0.00132700,0.00114600,
+  0.00115100,0.00126300,0.00153600,0.00206600,0.00306400,0.00480900,0.00833400,
+  0.0178670,0.0604150]]
+}
+
 # Masking depth quoted in Vega mags, these conversions are for J and H
 # as tabulated here: https://www.gemini.edu/observing/resources/magnitudes-and-fluxes
 # Note that these mag conversions can vary slightly.
@@ -89,8 +107,30 @@ masking_waves = [1.1, 1.6]
 #              abs(data['mean'][i][j] - data['bounds'][i][j][1])
 #        data['err'][i].append(err)
 
-scale_units = 'ell'
-power_units = 'nW^2/m^4/sr' # I think these might be squared actually
+data = {'waves': _data['waves'], 'scales': _data['scales']}
+data['err'] = _data['err']
+data['mean'] = []
+for i, wave in enumerate(data['waves']):
+    #data['err'].append([])
+    data['mean'].append([])
+    for j, scale in enumerate(data['scales']):
+        #if _data['bounds'][i][j][0] == 0:
+        #    data['err'][i].append((0, 0))
+        #    data['mean'][i].append(_data['mean'][i][j]**2)
+        #    continue
 
-def get_ebl_anisotropies():
-    return data['waves'], data['scales'], data['mean'], data['err']
+        #err = (_data['bounds'][i][j][0] - _data['mean'][i][j])**2, \
+        #      (_data['mean'][i][j] - _data['bounds'][i][j][1])**2
+        #data['err'][i].append(err)
+        data['mean'][i].append(_data['mean'][i][j]**2)
+
+
+scale_units = 'ell'
+power_units = 'nW^2/m^4/sr'
+
+def get_ebl_anisotropies(from_spitzer=False):
+    if from_spitzer:
+        return data_spitzer['waves'], data_spitzer['scales'], \
+            data_spitzer['mean'], data_spitzer['err']
+    else:
+        return data['waves'], data['scales'], data['mean'], data['err']

@@ -32,6 +32,7 @@ Notes:
 identical to the actual measurements in the paper. They should be pretty close,
 however. This also explains the insane number of "significant" figures (I've
 just copy-pasted what plotdigitizer gives you).
+- Data from Fig. 3.
 - On small scales the error bars are imperceptibly small on the plots, so have
 been assigned an error of zero. This will obviously cause problems if you
 try to use this data in a fit! Beware.
@@ -127,26 +128,34 @@ masking_depth = [25, 25]
 masking_waves = _data['waves']
 
 #
-data = _data.copy()
+data = {}
+
+data['waves'] = _data['waves']
 
 # Native dataset is q^2 P(q) / 2pi vs. 2pi/q [arcsec]
-from math import pi
-#q = 2 * pi / _data['scales']
+# Convert to ell for consistency with other datasets
+data['scales'] = [180. / (element / 3600.) \
+    for element in _data['scales']]
 
 # Placeholder
 data['err'] = []
+data['mean'] = []
 for i, wave in enumerate(data['waves']):
     data['err'].append([])
+    data['mean'].append([])
     for j, scale in enumerate(data['scales']):
-        if data['bounds'][i][j][0] == 0:
+        if _data['bounds'][i][j][0] == 0:
             data['err'][i].append((0, 0))
+            data['mean'][i].append(_data['mean'][i][j]**2)
             continue
 
-        err = data['bounds'][i][j][0] - data['mean'][i][j], \
-              data['mean'][i][j] - data['bounds'][i][j][1]
+        err = (_data['bounds'][i][j][0] - _data['mean'][i][j])**2, \
+              (_data['mean'][i][j] - _data['bounds'][i][j][1])**2
         data['err'][i].append(err)
+        data['mean'][i].append(_data['mean'][i][j]**2)
 
-scale_units = 'arcsec'
+
+scale_units = 'ell'
 power_units = 'nW^2/m^4/sr^-2'
 
 def get_ebl_anisotropies():
