@@ -28,7 +28,7 @@ archivePrefix = {arXiv},
 notes = \
 """
 Notes:
-- 
+-
 """
 
 model_type = 'empirical'
@@ -184,7 +184,6 @@ def get_ebl_spectrum():
     for i, band in enumerate(bands):
         if band not in mean_ebl:
             continue
-
 
         _waves.append(waves[i])
         _mean.append(mean_ebl[band][-1][0])

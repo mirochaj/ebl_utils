@@ -1,3 +1,4 @@
+name = 'HESS Collaboration et al. (2013)'
 link = 'https://ui.adsabs.harvard.edu/abs/2013A%26A...550A...4H/abstract'
 bibtex = \
 """

@@ -13,7 +13,7 @@ Description: Stolen from Chi and Mike.
 import os
 import numpy as np
 import matplotlib.pyplot as plt
-from .read import read as read_data
+from .read import read as read_data, list_models, list_experiments
 
 #from .data import PATH
 PATH = os.environ.get('EBLUTILS')
@@ -22,8 +22,8 @@ str_nuInu = r'$\lambda I_{\lambda} \ [\rm{nW} \ \rm{m}^{-2} \ \rm{sr}^{-1}]$'
 str_waves = r'$\lambda / \mu\rm{m}$'
 str_power = r'$\sqrt{\ell(\ell+1)C_{\ell}} \ [\rm{nW} \ \rm{m}^{-1} \ \rm{sr}^{-1}]$'
 
-def plot_spectrum(ax=None, fig=1, fig_kwargs={}, include_models=[],
-    include_datasets=['ciber', 'dirbe', 'irts', 'newhorizons', 'akari', 'hubble'],
+def plot_ebl_spectrum(ax=None, fig=1, fig_kwargs={},
+    include_datasets='all', include_models='all',
     color_by=None, use_newest=True,
     dataset_kw={}, label_experiments=True, label_papers=False, **kwargs):
     """
@@ -47,6 +47,11 @@ def plot_spectrum(ax=None, fig=1, fig_kwargs={}, include_models=[],
 
     if ax is None:
         fig, ax = plt.subplots(1, 1, **fig_kwargs)
+
+    if include_datasets == 'all':
+        include_datasets = list_experiments()
+    if include_models == 'all':
+        include_models = list_models()
 
     ##
     # First, plot data
@@ -108,6 +113,7 @@ def plot_spectrum(ax=None, fig=1, fig_kwargs={}, include_models=[],
 
         # Plot it
         err = np.array(err)
+        print(dataset)
         if err.ndim == 1:
             ax.errorbar(x, y, yerr=err, fmt='o',
                 label=data.name, **kwargs)
@@ -393,7 +399,7 @@ def plot_zemcov_fig1(axes=None, fig=1):
     return fig, axes
 
 
-def plot_ebl_spectrum(ax=None, fig=1, show_akari=True, show_zodi=[1,6],
+def plot_ebl_spectrum_OLD(ax=None, fig=1, show_akari=True, show_zodi=[1,6],
     show_new_horizons=True, show_irts=True, show_ciber=True,
     show_dgl=True, show_dirbe=True, show_pioneer=True, show_dark_cloud=False,
     show_igl=True, show_gamma_ray=True, annotate=True, fig_kwargs={}):

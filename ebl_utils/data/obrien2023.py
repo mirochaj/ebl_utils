@@ -1,6 +1,8 @@
 """
-O'brien et al. 2023
+O'Brien et al. 2023
 """
+
+name = "O'Brien et al. 2023"
 
 link = 'https://ui.adsabs.harvard.edu/abs/2023AJ....165..237O/abstract'
 bibtex = \
@@ -29,7 +31,8 @@ data = \
 {
  'waves': [1.25, 1.4, 1.6],
  'uplims': [22, 32, 25],
+ 'err': [0] * 3,
 }
 
 def get_ebl_spectrum():
-    return data['waves'], data['uplims'], None
+    return data['waves'], data['uplims'], data['err']

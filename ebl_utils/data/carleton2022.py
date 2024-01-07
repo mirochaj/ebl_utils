@@ -47,7 +47,8 @@ data = \
 {
  'waves': [1.25, 1.4, 1.6],
  'uplims': [29, 40, 29],
+ 'err': [0] * 3,
 }
 
 def get_ebl_spectrum():
-    return data['waves'], data['uplims'], None
+    return data['waves'], data['uplims'], data['err']

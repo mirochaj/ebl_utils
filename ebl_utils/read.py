@@ -13,6 +13,48 @@ Description:
 import os
 import importlib
 
+def list_experiments():
+    all_exp = []
+    data = importlib.import_module(f'ebl_utils.data')
+
+    for fn in os.listdir(data.__path__[0]):
+        # Hacky way to figure out if this is for a single paper
+        if ('19' in fn) or ('20' in fn):
+            continue
+        if fn.startswith('__'):
+            continue
+
+        all_exp.append(fn.split('.py')[0])
+
+    return all_exp
+
+def list_datasets():
+    all_dat = []
+    data = importlib.import_module(f'ebl_utils.data')
+
+    for fn in os.listdir(data.__path__[0]):
+        # Hacky way to figure out if this is for a single paper
+        if ('19' not in fn) and ('20' not in fn):
+            continue
+        if fn.startswith('__'):
+            continue
+
+        all_dat.append(fn.split('.py')[0])
+
+    return all_dat
+
+def list_models():
+    all_dat = []
+    data = importlib.import_module(f'ebl_utils.models')
+
+    for fn in os.listdir(data.__path__[0]):
+        if fn.startswith('__'):
+            continue
+
+        all_dat.append(fn.split('.py')[0])
+
+    return all_dat
+
 def read(prefix, path=None, verbose=True):
     """
     Read data from the literature.
