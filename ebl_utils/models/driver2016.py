@@ -1,8 +1,28 @@
 from math import sqrt
 
 name = 'Driver et al. (2016)'
-link = None
-bibtex = None
+link = 'https://ui.adsabs.harvard.edu/abs/2016ApJ...827..108D/abstract'
+bibtex = \
+"""
+@ARTICLE{2016ApJ...827..108D,
+       author = {{Driver}, Simon P. and {Andrews}, Stephen K. and {Davies}, Luke J. and {Robotham}, Aaron S.~G. and {Wright}, Angus H. and {Windhorst}, Rogier A. and {Cohen}, Seth and {Emig}, Kim and {Jansen}, Rolf A. and {Dunne}, Loretta},
+        title = "{Measurements of Extragalactic Background Light from the Far UV to the Far IR from Deep Ground- and Space-based Galaxy Counts}",
+      journal = {\apj},
+     keywords = {cosmic background radiation, cosmological parameters, diffuse radiation, galaxies: statistics, zodiacal dust, Astrophysics - Astrophysics of Galaxies, Astrophysics - Cosmology and Nongalactic Astrophysics},
+         year = 2016,
+        month = aug,
+       volume = {827},
+       number = {2},
+          eid = {108},
+        pages = {108},
+          doi = {10.3847/0004-637X/827/2/108},
+archivePrefix = {arXiv},
+       eprint = {1605.01523},
+ primaryClass = {astro-ph.GA},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2016ApJ...827..108D},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+"""
 
 _cols = 'Wavelength', 'Best Fit', 'Median',	'Lower Limit', \
     'Zero-point Error', 'Fitting Error', 'Poisson Error', 'CV Error'
