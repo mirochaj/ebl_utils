@@ -23,6 +23,12 @@ archivePrefix = {arXiv},
 }
 """
 
+notes = \
+"""
+- Paper provides EBL broken into a few redshift bins as well, though I've only
+transcribed z=0 for now.
+"""
+
 data = \
 {
  'waves': [0.10,0.11,0.12,0.13,0.14,0.15,0.16,0.18,0.19,0.21,0.22,0.24,0.26,0.28,0.31,

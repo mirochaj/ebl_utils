@@ -49,17 +49,23 @@ _waves = [_data[key][0] for key in _data.keys()]
 
 _mean = []
 _err = []
+_low = []
 for i, band in enumerate(_bands):
     _mean.append(_data[band][1])
     _err_ = [_data[band][j]**2 for j in range(4, 8)]
     _err.append(sqrt(sum(_err_)))
+    _low.append(_data[band][3])
 
 data = \
 {
  'waves': _waves,
  'mean': _mean,
- 'err': _err
+ 'err': _err,
+ 'low': _low,
 }
 
-def get_ebl_spectrum():
-    return data['waves'], data['mean'], data['err']
+def get_ebl_spectrum(use_lower_limit=False):
+    if use_lower_limit:
+        return data['waves'], data['low'], data['err']
+    else:
+        return data['waves'], data['mean'], data['err']
