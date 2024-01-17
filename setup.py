@@ -15,3 +15,7 @@ setup(name='ebl_utils',
       url='https://github.com/mirochaj/ebl_utils',
       packages=['ebl_utils'],
      )
+
+HOME = os.environ.get('HOME')
+if not os.path.exists(f"{HOME}/.ebl_utils"):
+    os.mkdir(f"{HOME}/.ebl_utils")
