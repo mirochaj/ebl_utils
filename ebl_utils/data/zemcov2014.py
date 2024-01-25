@@ -37,7 +37,7 @@ respectively,and all fields are masked to this depth."
 Cooray+ 2012, but with a shallower masking threshold closer to CIBER.
 """
 
-_data = \
+data = \
 {
  'waves': [1.1, 1.6],
  'scales': [163.109675, 226.175189, 313.624659, 434.886015, 603.032449,
@@ -96,34 +96,6 @@ masking_depth = [17.5 + 0.94, 17. + 1.38]
 masking_waves = [1.1, 1.6]
 # Masking depth for Spitzer 3.6 micron is 16.
 # All use 2MASS catalogs
-
-# Dataset 'err' is actually upper and lower bounds.
-# Convert to error bar to be consistent with other datasets
-#data['err'] = []
-#for i, wave in enumerate(data['waves']):
-#    data['err'].append([])
-#    for j, scale in enumerate(data['scales']):
-#        err = data['bounds'][i][j][0] - data['mean'][i][j], \
-#              abs(data['mean'][i][j] - data['bounds'][i][j][1])
-#        data['err'][i].append(err)
-
-data = {'waves': _data['waves'], 'scales': _data['scales']}
-data['err'] = _data['err']
-data['mean'] = []
-for i, wave in enumerate(data['waves']):
-    #data['err'].append([])
-    data['mean'].append([])
-    for j, scale in enumerate(data['scales']):
-        #if _data['bounds'][i][j][0] == 0:
-        #    data['err'][i].append((0, 0))
-        #    data['mean'][i].append(_data['mean'][i][j]**2)
-        #    continue
-
-        #err = (_data['bounds'][i][j][0] - _data['mean'][i][j])**2, \
-        #      (_data['mean'][i][j] - _data['bounds'][i][j][1])**2
-        #data['err'][i].append(err)
-        data['mean'][i].append(_data['mean'][i][j]**2)
-
 
 scale_units = 'ell'
 power_units = 'nW^2/m^4/sr'
