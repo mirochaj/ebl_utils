@@ -34,9 +34,10 @@ Notes:
 which translates to 17.5 and 17.0 in CIBER’s 1.1μm and 1.6μm bands,
 respectively,and all fields are masked to this depth."
 - The 3.6 micron measurements here are from Spitzer, the same as presented in
-Cooray+ 2012, but with a shallower masking threshold closer to CIBER.
+Cooray+ 2012, but with a shallower masking threshold closer to CIBER (L = 16).
 """
 
+# These are in nW^2 m^-4 sr^-2
 data = \
 {
  'waves': [1.1, 1.6],
@@ -71,7 +72,11 @@ data = \
 
 }
 
-data_spitzer = \
+# These are in [nW m^-2 sr^-1]
+# Note: yes, upon comparing to Fig. 1, these have not been squared yet,
+# whereas for 1.1 and 1.6 microns, the values listed above are in
+# nW^2 m^-4 sr^-2
+_data_spitzer = \
 {
  'waves': [3.6],
  'scales': [87.8503,122.466,170.722,237.993,331.771,462.500,644.741,898.792,
@@ -86,6 +91,26 @@ data_spitzer = \
   0.00115100,0.00126300,0.00153600,0.00206600,0.00306400,0.00480900,0.00833400,
   0.0178670,0.0604150]]
 }
+
+data_spitzer = {}
+data_spitzer['scales'] = _data_spitzer['scales']
+data_spitzer['waves'] = _data_spitzer['waves']
+data_spitzer['mean'] = []
+data_spitzer['err'] = []
+#
+
+for i, wave in enumerate(data_spitzer['waves']):
+    new_m = []
+    new_e = []
+    for j, ell in enumerate(data_spitzer['scales']):
+        new_m.append(_data_spitzer['mean'][i][j]**2)
+        new_e.append(_data_spitzer['err'][i][j]**2)
+
+    data_spitzer['mean'].append(new_m)
+    data_spitzer['err'].append(new_e)
+
+#for key in data:
+#    data[key].append(data_spitzer[key])
 
 # Masking depth quoted in Vega mags, these conversions are for J and H
 # as tabulated here: https://www.gemini.edu/observing/resources/magnitudes-and-fluxes

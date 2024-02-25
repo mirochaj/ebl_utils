@@ -32,6 +32,7 @@ That survey is quite a bit deeper, BRI >= 26 AB mag, JH = 21 AB mag, and K = 21.
 
 # Converting from Vega to AB
 masking_depth = [19.77 + 2.779, 18.83 + 3.264]
+masking_waves = [3.6, 4.5]
 
 # This is the raw data, as reported in SI Table 1. Square everything below.
 _data = \
@@ -58,21 +59,22 @@ _data = \
   0.06e-2,0.12e-2,0.08e-2,0.07e-2,0.15e-2]]
 }
 
-data = {}
-data['scales'] = _data['scales']
-data['waves'] = _data['waves']
-data['mean'] = []
-data['err'] = []
-
-for i, wave in enumerate(data['waves']):
-    new_m = []
-    new_e = []
-    for j, ell in enumerate(data['scales']):
-        new_m.append(_data['mean'][i][j]**2)
-        new_e.append(_data['err'][i][j]**2)
-
-    data['mean'].append(new_m)
-    data['err'].append(new_e)
+data = _data
+#data = {}
+#data['scales'] = _data['scales']
+#data['waves'] = _data['waves']
+#data['mean'] = []
+#data['err'] = []
+#
+#for i, wave in enumerate(data['waves']):
+#    new_m = []
+#    new_e = []
+#    for j, ell in enumerate(data['scales']):
+#        new_m.append(_data['mean'][i][j]**2)
+#        new_e.append(_data['err'][i][j]**2)
+#
+#    data['mean'].append(new_m)
+#    data['err'].append(new_e)
 
 scale_units = 'ell'
 power_units = 'nW^2/m^4/sr' # I think these might be squared actually

@@ -44,7 +44,7 @@ with other datasets.
 
 """
 
-data = \
+_data = \
 {
  'waves': [2.4, 3.2, 4.1],
  'scales': [111, 125, 143, 167, 200, 250, 333],
@@ -58,21 +58,35 @@ data = \
  'shot': [[0.13, 0.12, 0.10, 0.087, 0.070, 0.058, 0.041],
           [0.08, 0.075, 0.064, 0.055, 0.044, 0.036, 0.027],
           [0.045, 0.039, 0.034, 0.030, 0.025, 0.020, 0.016]],
+ 'shot_err': [[0.0026, 0.0017, 0.0015, 0.0021, 0.0012, 0.0015, 0.0013],
+              [0.0016, 0.0012, 0.0010, 0.0014, 0.0007, 0.0009, 0.0009],
+              [0.0009, 0.0006, 0.0005, 0.0007, 0.0005, 0.0005, 0.0005]]
 }
 
 # Native dataset is q^2 P(q) / 2pi vs. 2pi/q [arcsec]
 # Convert to ell for consistency with other datasets
+data = {}
+data['waves'] = _data['waves']
 data['scales'] = [180. / (element / 3600.) \
-    for element in data['scales']]
+    for element in _data['scales']]
 
 # Square everything
+data['err'] = []
+data['mean'] = []
+data['shot'] = []
+data['shot_err'] = []
 for i, wave in enumerate(data['waves']):
-    for j, mode in enumerate(data['scales']):
-        data['mean'][i][j] = data['mean'][i][j]**2
-        data['err'][i][j] = data['err'][i][j]**2
-        # `mode` is in arcsec = 2 pi / q
-        q = 2 * pi / float(mode * pi / 3600 / 180.)
-        data['shot'][i][j] = data['shot'][i][j]**2 * 2 * pi / q**2
+    data['err'].append([])
+    data['mean'].append([])
+    data['shot'].append([])
+    data['shot_err'].append([])
+    for j, scale in enumerate(_data['scales']):
+        data['mean'][i].append(_data['mean'][i][j]**2)
+        data['err'][i].append(_data['err'][i][j]**2)
+        # `scale` is in arcsec = 2 pi / q
+        q = 2 * pi / float((scale / 3600) * pi / 180.)
+        data['shot'][i].append(_data['shot'][i][j]**2 * 2 * pi / q**2)
+        data['shot_err'][i].append(_data['shot_err'][i][j]**2 * 2 * pi / q**2)
 
 masking_depth = [22.9, 23.2, 23.8]
 masking_waves = data['waves']

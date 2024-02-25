@@ -130,6 +130,7 @@ masking_waves = _data['waves']
 #
 data = {}
 
+data['shot'] = _data['shot']
 data['waves'] = _data['waves']
 
 # Native dataset is q^2 P(q) / 2pi vs. 2pi/q [arcsec]
