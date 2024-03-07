@@ -5,6 +5,8 @@ Carleton et al. (2022)
 link = 'https://ui.adsabs.harvard.edu/abs/2022AJ....164..170C/abstract'
 name = 'Carleton et al. (2022)'
 year = 2022
+experiment = 'SKYSURF'
+
 bibtex = \
 """
 @ARTICLE{2022AJ....164..170C,

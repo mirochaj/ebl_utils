@@ -5,6 +5,9 @@ O'Brien et al. 2023
 name = "O'Brien et al. 2023"
 
 link = 'https://ui.adsabs.harvard.edu/abs/2023AJ....165..237O/abstract'
+experiment = 'SKYSURF'
+year = 2023
+
 bibtex = \
 """
 @ARTICLE{2023AJ....165..237O,

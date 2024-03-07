@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 from .read import read as read_data, list_models, list_experiments
 
 label_flux = r'$\nu I_{\nu} \ [\rm{nW} \ \rm{m}^{-2} \ \rm{sr}^{-1}]$'
-label_wave = r'$\lambda \ [\AA]$'
+label_wave = r'$\lambda \ [\mu\rm{m}]$'
 label_power = r'$\sqrt{\ell(\ell+1) C_{\ell}} \ [\rm{nW} \ \rm{m}^{-2} \ \rm{sr}^{-1}]$'
 
 def plot_ebl_spectrum(ax=None, fig=1, fig_kwargs={},

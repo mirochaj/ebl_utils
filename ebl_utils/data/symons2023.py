@@ -5,6 +5,7 @@ Symons et al. 2023
 name = 'Symons et al. (2023)'
 year = 2023
 link = 'https://ui.adsabs.harvard.edu/abs/2023ApJ...945...45S/abstract'
+experiment = 'New Horizons'
 
 bibtex = \
 """

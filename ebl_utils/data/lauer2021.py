@@ -5,6 +5,7 @@ Lauer et al. 2021
 name = 'Lauer et al. (2021)'
 year = 2021
 link = 'https://ui.adsabs.harvard.edu/abs/2021ApJ...906...77L/abstract'
+experiment = 'New Horizons'
 
 bibtex = \
 """
