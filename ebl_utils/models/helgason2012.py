@@ -2,6 +2,7 @@
 Helgason et al. (2012)
 """
 name = 'Helgason et al. (2012)'
+name_short = 'H12'
 year = 2012
 link = 'https://ui.adsabs.harvard.edu/abs/2012ApJ...752..113H/abstract'
 bibtex = \
@@ -24,6 +25,7 @@ archivePrefix = {arXiv},
        adsurl = {https://ui.adsabs.harvard.edu/abs/2012ApJ...752..113H},
       adsnote = {Provided by the SAO/NASA Astrophysics Data System}
 }
+
 """
 notes = \
 """

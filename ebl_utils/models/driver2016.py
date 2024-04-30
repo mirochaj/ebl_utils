@@ -1,6 +1,7 @@
 from math import sqrt
 
 name = 'Driver et al. (2016)'
+name_short = 'D16'
 link = 'https://ui.adsabs.harvard.edu/abs/2016ApJ...827..108D/abstract'
 bibtex = \
 """

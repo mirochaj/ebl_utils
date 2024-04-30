@@ -21,7 +21,7 @@ label_power = r'$\sqrt{\ell(\ell+1) C_{\ell}} \ [\rm{nW} \ \rm{m}^{-2} \ \rm{sr}
 
 def plot_ebl_spectrum(ax=None, fig=1, fig_kwargs={},
     include_datasets='all', include_models='all',
-    color_by=None, use_newest=True,
+    color_by=None, use_newest=True, show_as_band=True,
     dataset_kw={}, label_experiments=True, label_papers=False, **kwargs):
     """
     Make a nice-ish plot of the EBL spectrum.
@@ -33,7 +33,18 @@ def plot_ebl_spectrum(ax=None, fig=1, fig_kwargs={},
     fig : int, matplotlib.figure.Figure
         Pre-existing figure object or an integer that will be used as the
         ID number for a new plot window.
-
+    fig_kwargs : dict, optional
+        Can provide a dictionary of optional keyword arguments that will be
+        passed along to `subplots`, e.g., 'figsize'.
+    include_datasets : str, list, bool, None
+        List of datasets to include in plot, e.g., ['pioneer', 'ciber'].
+        Can also set to False or None to skip data.
+    include_models : str, list, bool, None
+        List of models to include in plot, e.g., ['helgason2012', 'driver2016'].
+        Can also set to False or None to skip data.
+    show_as_band : bool
+        For models, if True, will use `fill_between` to shade between the +/-
+        boundaries of the model.
 
     Returns
     -------
@@ -47,8 +58,13 @@ def plot_ebl_spectrum(ax=None, fig=1, fig_kwargs={},
 
     if include_datasets == 'all':
         include_datasets = list_experiments()
+    elif include_datasets in [False, None]:
+        include_datasets = []
+
     if include_models == 'all':
         include_models = list_models()
+    elif include_models in [False, None]:
+        include_models = []
 
     ##
     # First, plot data
@@ -109,14 +125,21 @@ def plot_ebl_spectrum(ax=None, fig=1, fig_kwargs={},
         x, y, err = data.get_ebl_spectrum()
 
         # Plot it
+        y = np.array(y)
         err = np.array(err)
-        print(dataset)
+
         if err.ndim == 1:
-            ax.errorbar(x, y, yerr=err, fmt='o',
-                label=data.name, **kwargs)
+            if show_as_band:
+                ax.fill_between(x, y-err, y+err, label=data.name, **kwargs)
+            else:
+                ax.errorbar(x, y, yerr=err, fmt='o',
+                    label=data.name, **kwargs)
         else:
-            ax.errorbar(x, y, yerr=err[:,-1::-1].T, fmt='o',
-                label=data.name, **kwargs)
+            if show_as_band:
+                ax.fill_between(x, y-err.T[0], y+err.T[1], label=data.name, **kwargs)
+            else:
+                ax.errorbar(x, y, yerr=err[:,-1::-1].T, fmt='o',
+                    label=data.name, **kwargs)
 
     ##
     # Make nice
