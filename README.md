@@ -51,10 +51,19 @@ waves, spec, err = h12.get_ebl_spectrum()
 import numpy as np
 import matplotlib.pyplot as plt
 
-plt.plot(waves, spec)
-plt.xlabel(ebl_utils.label_wave)
-plt.ylabel(ebl_utils.label_flux)
+fig, ax = plt.subplots(1, 1, num=1)
+ax.plot(waves, spec)
+ax.set_xlabel(ebl_utils.label_wave)
+ax.set_ylabel(ebl_utils.label_flux)
+
+# You can also make some plots automatically, e.g.,
+ebl_utils.plot_ebl_spectrum(ax=ax, fig=fig, alpha=0.5,
+  include_datasets=False, include_models=['helgason2012'])
+# Or if you want to see the model predictions as points with error-bars:
+ebl_utils.plot_ebl_spectrum(ax=ax, fig=fig, show_as_band=0,
+  include_datasets=False, include_models=['helgason2012'])
 ```
+
 For more examples, check out the Jupyter notebooks in `ebl_utils/docs/source`.
 
 Disclaimers

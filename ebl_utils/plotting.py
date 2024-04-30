@@ -136,7 +136,7 @@ def plot_ebl_spectrum(ax=None, fig=1, fig_kwargs={},
                     label=data.name, **kwargs)
         else:
             if show_as_band:
-                ax.fill_between(x, y-err.T[0], y+err.T[1], label=data.name, **kwargs)
+                ax.fill_between(x, y-err.T[1], y+err.T[0], label=data.name, **kwargs)
             else:
                 ax.errorbar(x, y, yerr=err[:,-1::-1].T, fmt='o',
                     label=data.name, **kwargs)

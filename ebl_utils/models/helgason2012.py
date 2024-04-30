@@ -30,7 +30,7 @@ archivePrefix = {arXiv},
 notes = \
 """
 Notes:
--
+- Mean EBL results in Table 3.
 """
 
 model_type = 'empirical'
@@ -63,6 +63,8 @@ data_ebl = \
 {
 
 }
+
+# Final 3-element tuple is (best-fit EBL +/- err)
 mean_ebl = {}
 mean_ebl['B'] = (3.33, 1.72, -0.82), (2.26, 1.56, -0.71), (1.17, 1.24, -0.50),\
     (0.52, 0.88, -0.29), (4.92, 1.81, -0.88)
@@ -179,6 +181,11 @@ data_shot['bounds'].append([(hi_45[i], lo_45[i]) for i in range(len(masking_dept
 def get_ebl_spectrum():
     """
     Plot the mean EBL [nW/m^2/sr] as a function of observed wavelength [microns].
+
+    Returns
+    -------
+    Tuple containing the (mean EBL intensity, + error, - error). Note that the
+    +/- errors are returned as positive numbers.
     """
     _waves = []
     _mean = []
@@ -189,7 +196,8 @@ def get_ebl_spectrum():
 
         _waves.append(waves[i])
         _mean.append(mean_ebl[band][-1][0])
-        _err.append((mean_ebl[band][-1][2], -mean_ebl[band][-1][1]))
+        # Return as (mean, + err, | - err |)
+        _err.append((mean_ebl[band][-1][1], -mean_ebl[band][-1][2]))
 
     return _waves, _mean, _err
 
