@@ -76,3 +76,9 @@ Note that several datasets report multiple results for the mean EBL fluctuations
 
 Finally, some studies quote masking depths in Vega magnitudes. Again, for consistency, all Vega mags are converted to AB magnitudes in the `masking_depth` attribute of relevant datasets. At the moment, if you want to track this conversion, you'll have to navigate to the source code for now. We've taken conversion factors from [Timlin et al. (2016)](https://ui.adsabs.harvard.edu/abs/2016ApJS..225....1T/abstract), but note that slightly different values are listed by
 [Gemini](https://www.gemini.edu/observing/resources/magnitudes-and-fluxes) and [IPAC](https://wise2.ipac.caltech.edu/docs/release/allsky/expsup/sec4_4h.html).
+
+## External datasets
+
+Much of the contents in this repository *are* data. However, in a few cases there are some files that have way more stuff than we'd like to transcribe here and/or track with git.
+
+Our convention at the moment is to stick these files in `$HOME/.ebl_utils`. So, e.g, if you want to use the Driver et al. 2016 compilation of galaxy number counts, you need to download [this file](https://content.cld.iop.org/journals/0004-637X/827/2/108/revision1/apjaa28a0_table3.tar.gz), and unpack it in `$HOME/.ebl_utils`. 

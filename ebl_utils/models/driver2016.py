@@ -1,8 +1,19 @@
+import os
+import numpy as np
 from math import sqrt
+
+try:
+    from astropy.io import fits
+    has_astropy = True
+except IndexError:
+    has_astropy = False
+
+_input = os.environ.get('HOME') + '/.ebl_utils'
 
 name = 'Driver et al. (2016)'
 name_short = 'D16'
 link = 'https://ui.adsabs.harvard.edu/abs/2016ApJ...827..108D/abstract'
+link_data = 'https://content.cld.iop.org/journals/0004-637X/827/2/108/revision1/apjaa28a0_table3.tar.gz'
 bibtex = \
 """
 @ARTICLE{2016ApJ...827..108D,
@@ -23,6 +34,10 @@ archivePrefix = {arXiv},
        adsurl = {https://ui.adsabs.harvard.edu/abs/2016ApJ...827..108D},
       adsnote = {Provided by the SAO/NASA Astrophysics Data System}
 }
+"""
+notes = \
+"""
+- Table 3 in FITS format is available here: https://content.cld.iop.org/journals/0004-637X/827/2/108/revision1/apjaa28a0_table3.tar.gz
 """
 
 _cols = 'Wavelength', 'Best Fit', 'Median',	'Lower Limit', \
@@ -70,3 +85,48 @@ def get_ebl_spectrum(use_lower_limit=False):
         return data['waves'], data['low'], data['err']
     else:
         return data['waves'], data['mean'], data['err']
+
+
+def get_available_bands():
+    assert has_astropy, "Must have astropy to use Driver+ 2016 data."
+    if not os.path.exists(f'{_input}/Table3MRT.fits'):
+        raise IOError(f'Must download and unpack file {link_data} -> $HOME/.ebl_utils')
+
+    hdulist = fits.open(f'{_input}/Table3MRT.fits')
+    data = hdulist[1].data
+    all_bands = []
+    for element in data:
+
+        if element[1] not in all_bands:
+            all_bands.append(element[1])
+
+    return all_bands
+
+def get_number_counts(band):
+    """
+    Return number counts for a given band.
+
+    Options include: ugriz, JHK, W1, W2, and Hubble filters
+    """
+    assert has_astropy, "Must have astropy to use Driver+ 2016 data."
+    if not os.path.exists(f'{_input}/Table3MRT.fits'):
+        raise IOError(f'Must download and unpack file {link_data} -> $HOME/.ebl_utils')
+
+    hdulist = fits.open(f'{_input}/Table3MRT.fits')
+    data = hdulist[1].data
+    telescopes = []
+
+    mags = []
+    cts = []
+    err = []
+    for element in data:
+        if element[1] != band:
+            continue
+
+        _err = np.sqrt(element[4]**2 + (1e-2 * element[6] * element[3])**2)
+
+        mags.append(element[2])
+        cts.append(element[3])
+        err.append(_err)
+
+    return np.array(mags), np.array(cts), np.array(err)
