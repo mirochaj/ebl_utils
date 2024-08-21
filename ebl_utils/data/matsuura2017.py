@@ -6,6 +6,14 @@ name = 'Matsuura et al. (2017)'
 year = 2017
 experiment = 'CIBER'
 link = 'https://ui.adsabs.harvard.edu/abs/2017ApJ...839....7M/abstract'
+
+style = \
+{
+ 'color': 'r',
+ 'mfc': None,
+ 'marker': 'h',
+}
+
 bibtex = \
 """
 @ARTICLE{2017ApJ...839....7M,

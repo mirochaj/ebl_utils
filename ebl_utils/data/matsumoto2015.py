@@ -2,8 +2,14 @@
 name = 'Matsuomoto et al. (2015)'
 year = 2015
 experiment = 'IRTS'
-
 link = 'https://ui.adsabs.harvard.edu/abs/2015ApJ...807...57M/abstract'
+style = \
+{
+ 'color': 'pink',
+ 'mfc': None,
+ 'marker': '<',
+}
+
 bibtex = \
 """
 @ARTICLE{2015ApJ...807...57M,

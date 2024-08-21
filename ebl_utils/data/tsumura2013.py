@@ -6,6 +6,13 @@ name = 'Tsumura et al. (2013)'
 link = 'https://ui.adsabs.harvard.edu/abs/2013PASJ...65..121T/abstract'
 experiment = 'Akari'
 
+style = \
+{
+ 'color': 'm',
+ 'mfc': None,
+ 'marker': 'd',
+}
+
 bibtex = \
 """
 @ARTICLE{2013PASJ...65..121T,

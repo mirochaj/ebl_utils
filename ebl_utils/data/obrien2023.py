@@ -8,6 +8,14 @@ link = 'https://ui.adsabs.harvard.edu/abs/2023AJ....165..237O/abstract'
 experiment = 'SKYSURF'
 year = 2023
 
+style = \
+{
+ 'color': 'green',
+ 'mfc': None,
+ 'marker': 'p',
+}
+
+
 bibtex = \
 """
 @ARTICLE{2023AJ....165..237O,

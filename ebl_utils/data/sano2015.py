@@ -6,6 +6,14 @@ name = 'Sano et al. (2015)'
 year = 2015
 experiment = 'DIRBE'
 link = 'https://ui.adsabs.harvard.edu/abs/2015ApJ...811...77S/abstract'
+
+style = \
+{
+ 'color': 'c',
+ 'mfc': 'none',
+ 'marker': '<',
+}
+
 bibtex = \
 """
 @ARTICLE{2015ApJ...811...77S,

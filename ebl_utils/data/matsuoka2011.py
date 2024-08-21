@@ -6,6 +6,13 @@ name = 'Matsuoka et al. (2011)'
 year = 2011
 experiment = 'Pioneer'
 link = 'https://ui.adsabs.harvard.edu/abs/2011ApJ...736..119M/abstract'
+style = \
+{
+ 'color': 'b',
+ 'mfc': None,
+ 'marker': 'o',
+}
+
 bibtex = \
 """
 @ARTICLE{2011ApJ...736..119M,

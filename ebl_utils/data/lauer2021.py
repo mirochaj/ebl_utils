@@ -7,6 +7,13 @@ year = 2021
 link = 'https://ui.adsabs.harvard.edu/abs/2021ApJ...906...77L/abstract'
 experiment = 'New Horizons'
 
+style = \
+{
+ 'color': 'orange',
+ 'mfc': 'none',
+ 'marker': 's',
+}
+
 bibtex = \
 """
 @ARTICLE{2021ApJ...906...77L,

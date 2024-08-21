@@ -7,6 +7,13 @@ name = 'Carleton et al. (2022)'
 year = 2022
 experiment = 'SKYSURF'
 
+style = \
+{
+ 'color': 'green',
+ 'mfc': 'none',
+ 'marker': 'p',
+}
+
 bibtex = \
 """
 @ARTICLE{2022AJ....164..170C,
