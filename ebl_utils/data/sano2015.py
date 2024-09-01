@@ -9,9 +9,9 @@ link = 'https://ui.adsabs.harvard.edu/abs/2015ApJ...811...77S/abstract'
 
 style = \
 {
- 'color': 'c',
+ 'color': 'm',
  'mfc': 'none',
- 'marker': '<',
+ 'marker': 'o',
 }
 
 bibtex = \

@@ -8,7 +8,7 @@ experiment = 'Akari'
 
 style = \
 {
- 'color': 'm',
+ 'color': 'pink',
  'mfc': None,
  'marker': 'd',
 }

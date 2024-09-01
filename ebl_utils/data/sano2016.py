@@ -8,9 +8,9 @@ experiment = 'DIRBE+WISE'
 link = 'https://ui.adsabs.harvard.edu/abs/2016ApJ...818...72S/abstract'
 style = \
 {
- 'color': 'pink',
+ 'color': 'm',
  'mfc': None,
- 'marker': '<',
+ 'marker': 'o',
 }
 
 bibtex = \
