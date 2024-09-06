@@ -104,7 +104,10 @@ def get_available_bands():
 
 def get_number_counts(band):
     """
-    Return number counts for a given band.
+    Return number counts for a given band in [number / mag / deg^2].
+
+    .. note :: Counts in D16 are reported in unnits of (0.5 mag)^-1. Here
+        we have multiplied by 2 so that units are simply mag^-1
 
     Options include: ugriz, JHK, W1, W2, and Hubble filters
     """
@@ -123,10 +126,10 @@ def get_number_counts(band):
         if element[1] != band:
             continue
 
-        _err = np.sqrt(element[4]**2 + (1e-2 * element[6] * element[3])**2)
+        _err = np.sqrt(element[4]**2 + (1e-2 * element[6] * element[3] * 2)**2)
 
         mags.append(element[2])
-        cts.append(element[3])
+        cts.append(element[3] * 2)
         err.append(_err)
 
     return np.array(mags), np.array(cts), np.array(err)
