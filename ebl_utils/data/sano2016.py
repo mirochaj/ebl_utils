@@ -11,6 +11,8 @@ style = \
  'color': 'm',
  'mfc': None,
  'marker': 'o',
+ 'label': name,
+ 'fmt': 'o',
 }
 
 bibtex = \

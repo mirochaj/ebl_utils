@@ -149,11 +149,11 @@ def plot_ebl_spectrum(ax=None, fig=1, fig_kwargs={},
     ax.set_xscale('log')
 
     ax.set_xticks([1,2,3,4,5], minor=False)
-    ax.set_xticks(np.arange(0.5, 1, 0.1), minor=True)
+    ax.set_xticks(np.arange(0.1, 1, 0.1), minor=True)
     ax.set_xticklabels(['1', '2', '3', '4', '5'])
 
-    ax.set_xlim(0.3, 6)
-    ax.set_ylim(1, 150)
+    ax.set_xlim(0.1, 6)
+    ax.set_ylim(1, 100)
 
     fig.subplots_adjust(left=0.2, bottom=0.2)
 
@@ -268,10 +268,10 @@ def plot_anisotropy_color(fig=None, ax=None, fig_kwargs={}, ell_bin=(500, 1e3),
     ax.set_yscale('log')
     ax.set_xscale('log')
     ax.set_xticks([1,2,3,4,5], minor=False)
-    ax.set_xticks(np.arange(0.5, 1, 0.1), minor=True)
+    ax.set_xticks(np.arange(0.1, 1, 0.1), minor=True)
     ax.set_xticklabels(['1', '2', '3', '4', '5'])
 
-    ax.set_xlim(0.3, 6)
+    ax.set_xlim(0.1, 6)
     ax.set_ylim(1e-2, 10)
 
     fig.subplots_adjust(left=0.2, bottom=0.2)

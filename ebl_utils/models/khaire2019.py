@@ -35,8 +35,8 @@ archivePrefix = {arXiv},
 notes = \
 """
 - Data available at https://academic.oup.com/mnras/article/484/3/4174/5304986#sec10.
-- Scroll to bottom to Supplementary Information to download file. Move it (`KS_2018_EBL`)
-into $HOME/.ebl_utils
+- Scroll to bottom to Supplementary Information to download file. Move `KS_2018_EBL`
+directory into ``$HOME/.ebl_utils`.
 """
 
 def get_ebl_spectrum():

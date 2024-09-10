@@ -13,6 +13,8 @@ style = \
  'color': 'green',
  'mfc': None,
  'marker': 'p',
+ 'label': name,
+ 'fmt': 'o',
 }
 
 

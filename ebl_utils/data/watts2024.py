@@ -11,11 +11,13 @@ style = \
  'color': 'm',
  'mfc': None,
  'marker': 's',
+ 'label': name,
+ 'fmt': 'o',
 }
 
 bibtex = \
 """
-@ARTICLE{Watts2024,
+@ARTICLE{2024arXiv240601491W,
        author = {{Watts}, D.~J. and {Galloway}, M. and {Gjerl{\o}w}, E. and {San},
        M. and {Aurlien}, R. and {Basyrov}, A. and {Brilenkov}, M. and {Eriksen},
        H.~K. and {Fuskeland}, U. and {Herman}, D. and {Ihle}, H.~T. and {Lunde},

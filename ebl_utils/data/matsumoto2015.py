@@ -8,6 +8,8 @@ style = \
  'color': 'pink',
  'mfc': None,
  'marker': '<',
+ 'label': name,
+ 'fmt': 'o',
 }
 
 bibtex = \
