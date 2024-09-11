@@ -55,7 +55,7 @@ def list_models():
 
     return all_dat
 
-def read(prefix, path=None, verbose=True):
+def read(prefix, path=None, verbose=True, first_search='data'):
     """
     Read data from the literature.
 
@@ -68,16 +68,18 @@ def read(prefix, path=None, verbose=True):
         that path here.
     """
 
+    second_search = 'models' if first_search == 'data' else 'data'
+
     is_data = False
     is_model = False
     # First: try to import from ares.data (i.e., right here)
     try:
-        mod = importlib.import_module(f'ebl_utils.data.{prefix}')
+        mod = importlib.import_module(f'ebl_utils.{first_search}.{prefix}')
         is_data = True
         return mod
     except ModuleNotFoundError:
         try:
-            mod = importlib.import_module(f'ebl_utils.models.{prefix}')
+            mod = importlib.import_module(f'ebl_utils.{second_search}.{prefix}')
             is_model = True
             return mod
         except ModuleNotFoundError:

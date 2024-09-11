@@ -4,6 +4,14 @@ Kousha et al. (2021)
 name = 'Koushan et al. (2021)'
 year = 2021
 link = 'https://ui.adsabs.harvard.edu/abs/2021MNRAS.503.2033K/abstract'
+style = \
+{
+ 'color': 'coral',
+ 'edgecolor': 'coral',
+ 'facecolor': 'none',
+ 'hatch': 'xx',
+ 'label': name,
+}
 bibtex = \
 """
 @ARTICLE{2021MNRAS.503.2033K,

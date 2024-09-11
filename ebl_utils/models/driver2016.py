@@ -14,6 +14,15 @@ name = 'Driver et al. (2016)'
 name_short = 'D16'
 link = 'https://ui.adsabs.harvard.edu/abs/2016ApJ...827..108D/abstract'
 link_data = 'https://content.cld.iop.org/journals/0004-637X/827/2/108/revision1/apjaa28a0_table3.tar.gz'
+style = \
+{
+ 'color': 'r',
+ 'edgecolor': 'r',
+ 'facecolor': 'none',
+ 'hatch': '\\',
+ 'label': name,
+}
+
 bibtex = \
 """
 @ARTICLE{2016ApJ...827..108D,

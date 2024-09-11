@@ -1,12 +1,19 @@
 import os
 import numpy as np
 
-_input = os.environ.get('HOME') + '/.ebl_utils'
+_HOME = os.environ.get('HOME')
+_input = _HOME + '/.ebl_utils'
 
 name = 'Finke et al. (2022)'
 name_short = 'F22'
 link = 'https://ui.adsabs.harvard.edu/abs/2022ApJ...941...33F/abstract'
 link_data = 'https://zenodo.org/records/7023073/files/EBL_intensity.tar.gz?download=1'
+style = \
+{
+ 'color': 'm',
+ 'ls': '--',
+ 'label': name,
+}
 bibtex = \
 """
 @ARTICLE{2022ApJ...941...33F,
@@ -33,8 +40,11 @@ notes = \
 - Data available on Zenodo: https://zenodo.org/records/7023073
 """
 
-def download_finke2022_models():
-    if not os.path.exists(f"{_HOME}/.ebl_utils"):
+def download_data():
+    import zipfile
+    from urllib.request import urlretrieve
+
+    if not os.path.exists(f"{_input}"):
         os.mkdir(f"{_HOME}/.ebl_utils")
 
     urlretrieve(link_data,

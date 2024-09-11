@@ -5,6 +5,14 @@ name = 'Helgason et al. (2012)'
 name_short = 'H12'
 year = 2012
 link = 'https://ui.adsabs.harvard.edu/abs/2012ApJ...752..113H/abstract'
+style = \
+{
+ 'color': 'orange',
+ 'edgecolor': 'orange',
+ 'facecolor': 'none',
+ 'hatch': '/',
+ 'label': name,
+}
 bibtex = \
 """
 @ARTICLE{2012ApJ...752..113H,

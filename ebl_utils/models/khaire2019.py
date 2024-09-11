@@ -13,6 +13,12 @@ name = 'Khaire & Srianand (2019)'
 name_short = 'KS19'
 link = 'https://ui.adsabs.harvard.edu/abs/2019MNRAS.484.4174K/abstract'
 link_data = None
+style = \
+{
+ 'color': 'm',
+ 'ls': '-',
+ 'label': name,
+}
 """
 @ARTICLE{2019MNRAS.484.4174K,
        author = {{Khaire}, Vikram and {Srianand}, Raghunathan},
