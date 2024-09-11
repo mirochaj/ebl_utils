@@ -82,3 +82,14 @@ Finally, some studies quote masking depths in Vega magnitudes. Again, for consis
 Much of the contents in this repository *are* data. However, in a few cases there are some files that have way more stuff than we'd like to transcribe here and/or track with git.
 
 Our convention at the moment is to stick these files in `$HOME/.ebl_utils`. So, e.g, if you want to use the [Driver et al. 2016](https://ui.adsabs.harvard.edu/abs/2016MNRAS.455.3911D/abstract) compilation of galaxy number counts, you need to download [this file](https://content.cld.iop.org/journals/0004-637X/827/2/108/revision1/apjaa28a0_table3.tar.gz), and unpack it in `$HOME/.ebl_utils`.
+
+In some cases we have functions to download and unpack the data automatically, e.g.,
+
+```python
+
+import ebl_utils
+
+for dataset in ['finke2022', 'saldanalopez2021']:
+    dset = ebl_utils.read(dataset)
+    dset.download_data()
+```

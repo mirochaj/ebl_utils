@@ -41,7 +41,7 @@ notes = \
 """
 
 def download_data():
-    import zipfile
+    import tarfile
     from urllib.request import urlretrieve
 
     if not os.path.exists(f"{_input}"):
@@ -50,9 +50,9 @@ def download_data():
     urlretrieve(link_data,
                 f"{_HOME}/.ebl_utils/EBL_intensity.tar.gz")
 
-    zip_ref = zipfile.ZipFile(f"{_HOME}/.ebl_utils/{_file_spherex}", 'r')
-    zip_ref.extractall(f"{_HOME}/spherex/")
-    zip_ref.close()
+    f = tarfile.open(f"{_HOME}/.ebl_utils/EBL_intensity.tar.gz")
+    f.extractall(f"{_HOME}/.ebl_utils/")
+    f.close()
 
 _z = np.arange(0, 7.02, 0.02)
 
