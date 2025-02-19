@@ -10,7 +10,7 @@ link = 'https://ui.adsabs.harvard.edu/abs/2022ApJ...941...33F/abstract'
 link_data = 'https://zenodo.org/records/7023073/files/EBL_intensity.tar.gz?download=1'
 style = \
 {
- 'color': 'm',
+ 'color': 'b',
  'ls': '--',
  'label': name,
 }

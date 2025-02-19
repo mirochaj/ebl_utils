@@ -14,7 +14,7 @@ experiment = None
 link = 'https://ui.adsabs.harvard.edu/abs/2021MNRAS.507.5144S/abstract'
 style = \
 {
- 'color': 'y',
+ 'color': 'g',
  'facecolor': 'none',
  'hatch': '|',
  'label': name,

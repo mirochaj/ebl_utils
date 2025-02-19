@@ -9,10 +9,11 @@ link = 'https://ui.adsabs.harvard.edu/abs/2023AJ....165...13W/abstract'
 style = \
 {
  'color': 'g',
- 'mfc': None,
+ #'edgecolor': 'g',
+ #'mfc': None,
  'marker': '^',
  'label': name,
- 'fmt': 'o',
+ #'fmt': 'o',
 }
 
 bibtex = \
