@@ -107,7 +107,7 @@ def get_available_bands():
     for element in data:
 
         if element[1] not in all_bands:
-            all_bands.append(element[1])
+            all_bands.append((element[1], element[7]))
 
     return all_bands
 
