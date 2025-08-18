@@ -124,6 +124,10 @@ def plot_ebl_spectrum(ax=None, fig=1, fig_kwargs={},
         # Load it
         x, y, err = data.get_ebl_spectrum()
 
+        if err is None:
+            ax.plot(x, y, label=data.name, **kwargs)
+            continue
+
         # Plot it
         y = np.array(y)
         err = np.array(err)

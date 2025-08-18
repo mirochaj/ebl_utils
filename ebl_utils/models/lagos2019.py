@@ -60,7 +60,7 @@ data = \
 {
  'waves': waves,
  'mean': flux,
- 'err': [None]*len(waves),
+ 'err': None,
 }
 
 
