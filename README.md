@@ -93,3 +93,6 @@ for dataset in ['finke2022', 'saldanalopez2021']:
     dset = ebl_utils.read(dataset)
     dset.download_data()
 ```
+
+In other cases, we don't. For example, to get the Khaire et al. 2019 models you have to go to [this page](https://academic.oup.com/mnras/article/484/3/4174/5304986#sec10), scroll to the bottom to Supplementary Information and download the file. Then, move `KS_2018_EBL`
+directory into ``$HOME/.ebl_utils`.
