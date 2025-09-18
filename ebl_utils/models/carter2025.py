@@ -13,6 +13,7 @@ style = \
  #'mfc': None,
  'marker': 'H',
  'label': name,
+ 'linestyle': 'None', 
  #'fmt': 'o',
 }
 

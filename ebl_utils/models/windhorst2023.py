@@ -12,6 +12,7 @@ style = \
  #'edgecolor': 'g',
  #'mfc': None,
  'marker': '^',
+ 'linestyle': 'None', 
  'label': name,
  #'fmt': 'o',
 }
